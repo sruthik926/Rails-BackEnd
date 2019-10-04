@@ -8,3 +8,7 @@ class CreateSearches < ActiveRecord::Migration[5.2]
     end
   end
 end
+
+
+
+#searches table is created with searchterm property - date is removed from the updated versionß

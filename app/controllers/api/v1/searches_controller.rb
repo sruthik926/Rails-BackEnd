@@ -3,10 +3,11 @@ class Api::V1::SearchesController < ApplicationController
   def index
     @searches = Search.all
     render json: @searches
+    #fetches all the searches/searchterms from the db - rendering the json object of it
   end
 
   def create
-    # binding.pry
+    # create action - where searchterm is created and saved - renders json of search if it is saved
     @search = Search.new(search_params)
       if @search.save
         render json: @search
@@ -17,7 +18,8 @@ class Api::V1::SearchesController < ApplicationController
   end
 
   def top_search
-    @top_searches = [Search.group(:searchterm).count]
+    #top_searches - custon action method - where searchterms are ordered by count -  returned in one hash
+    @top_searches = [Search.group(:searchterm).order('count_all desc').count]
     render json: @top_searches
   end
 
